@@ -1,0 +1,325 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 .SFNS-Regular_wdth_opsz1249BA_GRAD_wght1F40000;\f2\fnil\fcharset0 HelveticaNeue;
+\f3\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red246\green249\blue255;\red31\green31\blue34;\red172\green171\blue180;
+\red49\green49\blue53;\red255\green255\blue255;\red123\green143\blue171;\red25\green26\blue29;\red226\green158\blue107;
+\red220\green229\blue239;\red224\green203\blue103;\red65\green65\blue65;\red184\green130\blue220;\red129\green201\blue99;
+}
+{\*\expandedcolortbl;;\cssrgb\c97255\c98039\c100000;\cssrgb\c16078\c16471\c17647;\cssrgb\c72941\c72941\c75686;
+\cssrgb\c25098\c25098\c27059;\cssrgb\c100000\c100000\c100000;\cssrgb\c55294\c63137\c72549;\cssrgb\c12941\c13725\c15294;\cssrgb\c91373\c68235\c49412;
+\cssrgb\c89020\c91765\c94902;\cssrgb\c90196\c82745\c47843;\cssrgb\c32157\c32157\c32157;\cssrgb\c77647\c60000\c89020;\cssrgb\c56863\c81569\c46275;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh18000\viewkind0
+\deftab720
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f0\b\fs36\fsmilli18288 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 1. Data Cleaning Query
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf4 \cb5 \strokec4 sql
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf4 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf4 \cb5 Copy
+\fs32 \cb1 \
+\
+
+\fs26 \cb5 Download
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf7 \cb8 \strokec7 -- Cleans raw data by removing NULL values\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 CREATE\cf6 \strokec6  \cf9 \strokec9 OR\cf6 \strokec6  \cf9 \strokec9 REPLACE\cf6 \strokec6  \cf9 \strokec9 TABLE\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Bangladesh_cleaned\cf10 \strokec10 `\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6 \
+\cf9 \strokec9 SELECT\cf6 \strokec6  \
+  tem \cf9 \strokec9 AS\cf6 \strokec6  temperature\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf9 \strokec9 Month\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+  rain \cf9 \strokec9 AS\cf6 \strokec6  rainfall\
+\cf9 \strokec9 FROM\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Bangladesh\cf10 \strokec10 `\cf6 \strokec6 \
+\cf9 \strokec9 WHERE\cf6 \strokec6  \
+  tem \cf9 \strokec9 IS\cf6 \strokec6  \cf9 \strokec9 NOT\cf6 \strokec6  \cf11 \strokec11 NULL\cf6 \strokec6  \cf9 \strokec9 AND\cf6 \strokec6  \
+  \cf9 \strokec9 Month\cf6 \strokec6  \cf9 \strokec9 IS\cf6 \strokec6  \cf9 \strokec9 NOT\cf6 \strokec6  \cf11 \strokec11 NULL\cf6 \strokec6  \cf9 \strokec9 AND\cf6 \strokec6  \
+  \cf9 \strokec9 Year\cf6 \strokec6  \cf9 \strokec9 IS\cf6 \strokec6  \cf9 \strokec9 NOT\cf6 \strokec6  \cf11 \strokec11 NULL\cf6 \strokec6  \cf9 \strokec9 AND\cf6 \strokec6  \
+  rain \cf9 \strokec9 IS\cf6 \strokec6  \cf9 \strokec9 NOT\cf6 \strokec6  \cf11 \strokec11 NULL\cf10 \strokec10 ;\cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf2 \cb12 \strokec2 \
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f0\b\fs36\fsmilli18288 \cf2 \cb3 2. Yearly Average Temperature
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf4 \cb5 \strokec4 sql
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf4 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf4 \cb5 Copy
+\fs32 \cb1 \
+\
+
+\fs26 \cb5 Download
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf7 \cb8 \strokec7 -- Calculates yearly average, min, and max temperatures\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 CREATE\cf6 \strokec6  \cf9 \strokec9 OR\cf6 \strokec6  \cf9 \strokec9 REPLACE\cf6 \strokec6  \cf9 \strokec9 TABLE\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Yearly_Avg_Temperature\cf10 \strokec10 `\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6 \
+\cf9 \strokec9 SELECT\cf6 \strokec6  \
+  \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 temperature\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  avg_temperature\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 MIN\cf10 \strokec10 (\cf6 \strokec6 temperature\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  min_temperature\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 MAX\cf10 \strokec10 (\cf6 \strokec6 temperature\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  max_temperature\
+\cf9 \strokec9 FROM\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Bangladesh_cleaned\cf10 \strokec10 `\cf6 \strokec6 \
+\cf9 \strokec9 GROUP\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf6 \strokec6 \
+\cf9 \strokec9 ORDER\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf10 \strokec10 ;\cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf2 \cb12 \strokec2 \
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f0\b\fs36\fsmilli18288 \cf2 \cb3 3. Yearly Average Rainfall
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf4 \cb5 \strokec4 sql
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf4 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf4 \cb5 Copy
+\fs32 \cb1 \
+\
+
+\fs26 \cb5 Download
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf7 \cb8 \strokec7 -- Calculates yearly rainfall statistics\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 CREATE\cf6 \strokec6  \cf9 \strokec9 OR\cf6 \strokec6  \cf9 \strokec9 REPLACE\cf6 \strokec6  \cf9 \strokec9 TABLE\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Yearly_Avg_Rainfall\cf10 \strokec10 `\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6 \
+\cf9 \strokec9 SELECT\cf6 \strokec6  \
+  \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 rainfall\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  avg_rainfall\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 MIN\cf10 \strokec10 (\cf6 \strokec6 rainfall\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  min_rainfall\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 MAX\cf10 \strokec10 (\cf6 \strokec6 rainfall\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  max_rainfall\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 SUM\cf10 \strokec10 (\cf6 \strokec6 rainfall\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  total_rainfall\
+\cf9 \strokec9 FROM\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Bangladesh_cleaned\cf10 \strokec10 `\cf6 \strokec6 \
+\cf9 \strokec9 GROUP\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf6 \strokec6 \
+\cf9 \strokec9 ORDER\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf10 \strokec10 ;\cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf2 \cb12 \strokec2 \
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f0\b\fs36\fsmilli18288 \cf2 \cb3 4. Temperature Change Between Years
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf4 \cb5 \strokec4 sql
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf4 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf4 \cb5 Copy
+\fs32 \cb1 \
+\
+
+\fs26 \cb5 Download
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf7 \cb8 \strokec7 -- Calculates YoY temperature changes\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 CREATE\cf6 \strokec6  \cf9 \strokec9 OR\cf6 \strokec6  \cf9 \strokec9 REPLACE\cf6 \strokec6  \cf9 \strokec9 TABLE\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Temperature_Change\cf10 \strokec10 `\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6 \
+\cf9 \strokec9 WITH\cf6 \strokec6  yearly_avg \cf9 \strokec9 AS\cf6 \strokec6  \cf10 \strokec10 (\cf6 \strokec6 \
+  \cf9 \strokec9 SELECT\cf6 \strokec6  \
+    \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+    \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 temperature\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  avg_temp\
+  \cf9 \strokec9 FROM\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Bangladesh_cleaned\cf10 \strokec10 `\cf6 \strokec6 \
+  \cf9 \strokec9 GROUP\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \strokec10 )\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 SELECT\cf6 \strokec6  \
+  \cf9 \strokec9 current\cf10 \strokec10 .\cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf9 \strokec9 current\cf10 \strokec10 .\cf6 \strokec6 avg_temp\cf10 \strokec10 ,\cf6 \strokec6 \
+  previous\cf10 \strokec10 .\cf6 \strokec6 avg_temp \cf9 \strokec9 AS\cf6 \strokec6  prev_year_temp\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf9 \strokec9 current\cf10 \strokec10 .\cf6 \strokec6 avg_temp \cf9 \strokec9 -\cf6 \strokec6  previous\cf10 \strokec10 .\cf6 \strokec6 avg_temp \cf9 \strokec9 AS\cf6 \strokec6  temp_change\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf10 \strokec10 (\cf9 \strokec9 current\cf10 \strokec10 .\cf6 \strokec6 avg_temp \cf9 \strokec9 -\cf6 \strokec6  previous\cf10 \strokec10 .\cf6 \strokec6 avg_temp\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 /\cf6 \strokec6  previous\cf10 \strokec10 .\cf6 \strokec6 avg_temp \cf9 \strokec9 *\cf6 \strokec6  \cf11 \strokec11 100\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  temp_change_percent\
+\cf9 \strokec9 FROM\cf6 \strokec6  yearly_avg \cf9 \strokec9 current\cf6 \strokec6 \
+\cf9 \strokec9 LEFT\cf6 \strokec6  \cf9 \strokec9 JOIN\cf6 \strokec6  yearly_avg previous\
+  \cf9 \strokec9 ON\cf6 \strokec6  \cf9 \strokec9 current\cf10 \strokec10 .\cf9 \strokec9 Year\cf6 \strokec6  \cf9 \strokec9 =\cf6 \strokec6  previous\cf10 \strokec10 .\cf9 \strokec9 Year\cf6 \strokec6  \cf9 \strokec9 +\cf6 \strokec6  \cf11 \strokec11 1\cf6 \strokec6 \
+\cf9 \strokec9 ORDER\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 current\cf10 \strokec10 .\cf9 \strokec9 Year\cf10 \strokec10 ;\cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf2 \cb12 \strokec2 \
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f0\b\fs36\fsmilli18288 \cf2 \cb3 5. Monthly Averages
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf4 \cb5 \strokec4 sql
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf4 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf4 \cb5 Copy
+\fs32 \cb1 \
+\
+
+\fs26 \cb5 Download
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf7 \cb8 \strokec7 -- Calculates monthly averages across all years\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 CREATE\cf6 \strokec6  \cf9 \strokec9 OR\cf6 \strokec6  \cf9 \strokec9 REPLACE\cf6 \strokec6  \cf9 \strokec9 TABLE\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Monthly_Averages\cf10 \strokec10 `\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6 \
+\cf9 \strokec9 SELECT\cf6 \strokec6  \
+  \cf9 \strokec9 Month\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 temperature\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  avg_temperature\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 rainfall\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  avg_rainfall\
+\cf9 \strokec9 FROM\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Bangladesh_cleaned\cf10 \strokec10 `\cf6 \strokec6 \
+\cf9 \strokec9 GROUP\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Month\cf6 \strokec6 \
+\cf9 \strokec9 ORDER\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Month\cf10 \strokec10 ;\cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf2 \cb12 \strokec2 \
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f0\b\fs36\fsmilli18288 \cf2 \cb3 6. Combined Weather Table (For Scatter Plots)
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf4 \cb5 \strokec4 sql
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf4 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf4 \cb5 Copy
+\fs32 \cb1 \
+\
+
+\fs26 \cb5 Download
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf7 \cb8 \strokec7 -- Joins temperature and rainfall data for correlation analysis\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 CREATE\cf6 \strokec6  \cf9 \strokec9 OR\cf6 \strokec6  \cf9 \strokec9 REPLACE\cf6 \strokec6  \cf9 \strokec9 TABLE\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Yearly_Weather_Combined\cf10 \strokec10 `\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6 \
+\cf9 \strokec9 SELECT\cf6 \strokec6  \
+  t\cf10 \strokec10 .\cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+  t\cf10 \strokec10 .\cf6 \strokec6 avg_temperature\cf10 \strokec10 ,\cf6 \strokec6 \
+  r\cf10 \strokec10 .\cf6 \strokec6 avg_rainfall\
+\cf9 \strokec9 FROM\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Yearly_Avg_Temperature\cf10 \strokec10 `\cf6 \strokec6  t\
+\cf9 \strokec9 JOIN\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Yearly_Avg_Rainfall\cf10 \strokec10 `\cf6 \strokec6  r\
+  \cf9 \strokec9 ON\cf6 \strokec6  t\cf10 \strokec10 .\cf9 \strokec9 Year\cf6 \strokec6  \cf9 \strokec9 =\cf6 \strokec6  r\cf10 \strokec10 .\cf9 \strokec9 Year\cf10 \strokec10 ;\cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf2 \cb12 \strokec2 \
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f0\b\fs36\fsmilli18288 \cf2 \cb3 7. Seasonal Analysis
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf4 \cb5 \strokec4 sql
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf4 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf4 \cb5 Copy
+\fs32 \cb1 \
+\
+
+\fs26 \cb5 Download
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf7 \cb8 \strokec7 -- Groups data into seasons (Winter, Summer, Monsoon, Autumn)\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 CREATE\cf6 \strokec6  \cf9 \strokec9 OR\cf6 \strokec6  \cf9 \strokec9 REPLACE\cf6 \strokec6  \cf9 \strokec9 TABLE\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Seasonal_Analysis\cf10 \strokec10 `\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6 \
+\cf9 \strokec9 SELECT\cf6 \strokec6  \
+  \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf9 \strokec9 CASE\cf6 \strokec6  \
+    \cf9 \strokec9 WHEN\cf6 \strokec6  \cf9 \strokec9 Month\cf6 \strokec6  \cf9 \strokec9 IN\cf6 \strokec6  \cf10 \strokec10 (\cf11 \strokec11 12\cf10 \strokec10 ,\cf6 \strokec6  \cf11 \strokec11 1\cf10 \strokec10 ,\cf6 \strokec6  \cf11 \strokec11 2\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 THEN\cf6 \strokec6  \cf14 \strokec14 'Winter'\cf6 \strokec6 \
+    \cf9 \strokec9 WHEN\cf6 \strokec6  \cf9 \strokec9 Month\cf6 \strokec6  \cf9 \strokec9 IN\cf6 \strokec6  \cf10 \strokec10 (\cf11 \strokec11 3\cf10 \strokec10 ,\cf6 \strokec6  \cf11 \strokec11 4\cf10 \strokec10 ,\cf6 \strokec6  \cf11 \strokec11 5\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 THEN\cf6 \strokec6  \cf14 \strokec14 'Summer'\cf6 \strokec6 \
+    \cf9 \strokec9 WHEN\cf6 \strokec6  \cf9 \strokec9 Month\cf6 \strokec6  \cf9 \strokec9 IN\cf6 \strokec6  \cf10 \strokec10 (\cf11 \strokec11 6\cf10 \strokec10 ,\cf6 \strokec6  \cf11 \strokec11 7\cf10 \strokec10 ,\cf6 \strokec6  \cf11 \strokec11 8\cf10 \strokec10 ,\cf6 \strokec6  \cf11 \strokec11 9\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 THEN\cf6 \strokec6  \cf14 \strokec14 'Monsoon'\cf6 \strokec6 \
+    \cf9 \strokec9 WHEN\cf6 \strokec6  \cf9 \strokec9 Month\cf6 \strokec6  \cf9 \strokec9 IN\cf6 \strokec6  \cf10 \strokec10 (\cf11 \strokec11 10\cf10 \strokec10 ,\cf6 \strokec6  \cf11 \strokec11 11\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 THEN\cf6 \strokec6  \cf14 \strokec14 'Autumn'\cf6 \strokec6 \
+  \cf9 \strokec9 END\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  season\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 temperature\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  avg_temperature\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 rainfall\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  avg_rainfall\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 SUM\cf10 \strokec10 (\cf6 \strokec6 rainfall\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  total_rainfall\
+\cf9 \strokec9 FROM\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Bangladesh_cleaned\cf10 \strokec10 `\cf6 \strokec6 \
+\cf9 \strokec9 GROUP\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6  season\
+\cf9 \strokec9 ORDER\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6  season\cf10 \strokec10 ;\cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf2 \cb12 \strokec2 \
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f0\b\fs36\fsmilli18288 \cf2 \cb3 8. 5-Year Moving Average (Temperature Trends)
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf4 \cb5 \strokec4 sql
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf4 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf4 \cb5 Copy
+\fs32 \cb1 \
+\
+
+\fs26 \cb5 Download
+\fs25\fsmilli12573 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+
+\f3 \cf7 \cb8 \strokec7 -- Calculates smoothed temperature trends\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 CREATE\cf6 \strokec6  \cf9 \strokec9 OR\cf6 \strokec6  \cf9 \strokec9 REPLACE\cf6 \strokec6  \cf9 \strokec9 TABLE\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Temperature_Trends\cf10 \strokec10 `\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6 \
+\cf9 \strokec9 WITH\cf6 \strokec6  yearly_avg \cf9 \strokec9 AS\cf6 \strokec6  \cf10 \strokec10 (\cf6 \strokec6 \
+  \cf9 \strokec9 SELECT\cf6 \strokec6  \
+    \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+    \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 temperature\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  avg_temp\
+  \cf9 \strokec9 FROM\cf6 \strokec6  \cf10 \strokec10 `\cf6 \strokec6 gold-gearbox-455822-p2.Analysis1.Bangladesh_cleaned\cf10 \strokec10 `\cf6 \strokec6 \
+  \cf9 \strokec9 GROUP\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \strokec10 )\cf6 \strokec6 \
+\pard\pardeftab720\partightenfactor0
+\cf9 \strokec9 SELECT\cf6 \strokec6  \
+  \cf9 \strokec9 Year\cf10 \strokec10 ,\cf6 \strokec6 \
+  avg_temp\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 avg_temp\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 OVER\cf6 \strokec6  \cf10 \strokec10 (\cf6 \strokec6 \
+    \cf9 \strokec9 ORDER\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf6 \strokec6  \
+    \cf9 \strokec9 ROWS\cf6 \strokec6  \cf9 \strokec9 BETWEEN\cf6 \strokec6  \cf11 \strokec11 2\cf6 \strokec6  \cf9 \strokec9 PRECEDING\cf6 \strokec6  \cf9 \strokec9 AND\cf6 \strokec6  \cf11 \strokec11 2\cf6 \strokec6  \cf9 \strokec9 FOLLOWING\cf6 \strokec6 \
+  \cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  five_year_moving_avg\cf10 \strokec10 ,\cf6 \strokec6 \
+  \cf13 \strokec13 AVG\cf10 \strokec10 (\cf6 \strokec6 avg_temp\cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 OVER\cf6 \strokec6  \cf10 \strokec10 (\cf6 \strokec6 \
+    \cf9 \strokec9 ORDER\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf6 \strokec6  \
+    \cf9 \strokec9 ROWS\cf6 \strokec6  \cf9 \strokec9 BETWEEN\cf6 \strokec6  \cf11 \strokec11 4\cf6 \strokec6  \cf9 \strokec9 PRECEDING\cf6 \strokec6  \cf9 \strokec9 AND\cf6 \strokec6  \cf9 \strokec9 CURRENT\cf6 \strokec6  \cf9 \strokec9 ROW\cf6 \strokec6 \
+  \cf10 \strokec10 )\cf6 \strokec6  \cf9 \strokec9 AS\cf6 \strokec6  cumulative_five_year_avg\
+\cf9 \strokec9 FROM\cf6 \strokec6  yearly_avg\
+\cf9 \strokec9 ORDER\cf6 \strokec6  \cf9 \strokec9 BY\cf6 \strokec6  \cf9 \strokec9 Year\cf10 \strokec10 ;\cf6 \cb1 \strokec6 \
+}
